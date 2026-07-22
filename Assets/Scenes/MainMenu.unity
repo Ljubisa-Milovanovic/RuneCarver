@@ -130,6 +130,8 @@ GameObject:
   - component: {fileID: 33444761}
   - component: {fileID: 33444763}
   - component: {fileID: 33444762}
+  - component: {fileID: 33444764}
+  - component: {fileID: 33444765}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -198,6 +200,44 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33444760}
   m_CullTransparentMesh: 1
+--- !u!114 &33444764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33444760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5085c0bc04eaf82d980aad901ddcb156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomButtonOrder
+--- !u!114 &33444765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33444760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 100
+    m_Right: 0
+    m_Top: 200
+    m_Bottom: 350
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!224 &181137367 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
@@ -601,19 +641,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_SizeDelta.x
@@ -657,7 +697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 28.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -679,7 +719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
-      value: MenuButton (1)
+      value: PlayButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -781,19 +821,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_SizeDelta.x
@@ -837,7 +877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 73.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -907,7 +947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
-      value: MenuButton (3)
+      value: DeckButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1115,19 +1155,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1171,7 +1211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -63.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1233,7 +1273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
-      value: MenuButton (2)
+      value: SettingsButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1258,19 +1298,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1314,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1376,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
-      value: MenuButton
+      value: ExitButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
