@@ -1,66 +1,69 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class ButtonProps : MonoBehaviour
+namespace Resources.Scripts
 {
-    public enum ButtonAction
+    public class ButtonProps : MonoBehaviour
     {
-        LoadScene,
-        Exit,
-        None
-    };
-
-    [Header("Action Settings")]
-    [SerializeField] private ButtonAction action;
-    [SerializeField] private string sceneName;
-
-    private Color baseColor;
-    private Image Image;
-    private Color highlight = new(0.8549019607843137f, 0.8588235294117647f, 0.8666666666666667f, 0.5f);
-
-    private void Start()
-    {   
-        Image = transform.GetComponent<Image>();
-        baseColor = Image.color;
-        Debug.Log(highlight);
-    }
-
-    private void OnMouseEnter()
-    {
-        Image.color = highlight;
-    }
-
-    private void OnMouseExit()
-    {
-        Image.color = baseColor;
-    }
-
-    private void OnMouseDown()
-    {
-        HandleClick();
-    }
-
-    private void HandleClick()
-    {
-        switch(action)
+        private enum ButtonAction
         {
-            case ButtonAction.LoadScene:
-                if (!string.IsNullOrEmpty(sceneName))
-                    SceneManager.LoadScene(sceneName);
-                else
-                    Debug.LogWarning($"{gameObject.name}: scene isn't set");
-                break;
+            LoadScene,
+            Exit,
+            None
+        };
 
-            case ButtonAction.Exit:
-                Application.Quit();
-                Debug.Log("Quit");
-                break;
+        [SerializeField] private ButtonAction action;
+        [SerializeField] private string sceneName;
 
-            case ButtonAction.None:
-                break;
+        private Color _baseColor;
+        private Image _image;
+        private readonly Color _highlight = new(0.8549019607843137f, 0.8588235294117647f, 0.8666666666666667f, 0.5f);
+
+        private void Start()
+        {
+            _image = transform.GetComponent<Image>();
+            _baseColor = _image.color;
+            Debug.Log(_highlight);
+        }
+
+        private void OnMouseEnter()
+        {
+            _image.color = _highlight;
+        }
+
+        private void OnMouseExit()
+        {
+            _image.color = _baseColor;
+        }
+
+        private void OnMouseDown()
+        {
+            HandleClick();
+        }
+
+        private void HandleClick()
+        {
+            switch (action)
+            {
+                case ButtonAction.LoadScene:
+                    if (!string.IsNullOrEmpty(sceneName))
+                        SceneManager.LoadScene(sceneName);
+                    else
+                        Debug.LogWarning($"{gameObject.name}: scene isn't set");
+                    break;
+
+                case ButtonAction.Exit:
+                    Application.Quit();
+                    Debug.Log("Quit");
+                    break;
+
+                case ButtonAction.None:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
-
 }
