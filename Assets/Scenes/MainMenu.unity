@@ -253,7 +253,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8343a0ccc2922bb418f9b1a2bec048d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonHover
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonProps
 --- !u!224 &357473770 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 133873780959416605, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8343a0ccc2922bb418f9b1a2bec048d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonHover
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonProps
 --- !u!1 &477899941
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 477899942}
   - component: {fileID: 477899943}
+  - component: {fileID: 477899944}
   m_Layer: 5
   m_Name: MainContainer
   m_TagString: Untagged
@@ -316,6 +317,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477899941}
   m_CullTransparentMesh: 1
+--- !u!114 &477899944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477899941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -650819742071061613, guid: 30609a94b58856105a9f3c9a1d354c87, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &524302996
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +441,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8343a0ccc2922bb418f9b1a2bec048d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonHover
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonProps
 --- !u!1 &671857564
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +751,10 @@ PrefabInstance:
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
       value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: action
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1275,6 +1310,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: action
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: sceneName
+      value: Settings
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1417,6 +1460,14 @@ PrefabInstance:
     - target: {fileID: 7434777171087698303, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: action
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: sceneName
+      value: exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
