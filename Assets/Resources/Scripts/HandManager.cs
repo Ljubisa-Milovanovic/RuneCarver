@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -17,15 +18,23 @@ namespace Resources.Scripts
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.R))
+                DebugReset();
             if (Input.GetKeyDown(KeyCode.Space))
                 DrawCard();
         }
 
+        private void DebugReset()
+        {
+            foreach (var card in _handCards)
+                Destroy(card);
+            _handCards.Clear();
+        }
 
         private void DrawCard()
         {
             if (_handCards.Count >= maxHandSize) return;
-            GameObject card = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
+            var card = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
             card.transform.SetParent(cardHolder.transform, false); //stavi true da vidis sta ce da se desi
             _handCards.Add(card);
             UpdateCardPosition();
@@ -40,18 +49,20 @@ namespace Resources.Scripts
                 return;
             }
 
-            var cardSpacing = 1f / maxHandSize; //splien je float od 0f do 1f
+            // Making curvature
+            var cardSpacing = 1f / _handCards.Count;
             var firstCardPosition = 0.5f - (_handCards.Count - 1) * cardSpacing / 2;
-            var spline = splineContainer.Spline;
-            
+
             var i = 0;
             foreach (var card in _handCards)
             {
-                var position = firstCardPosition + (30*i++) * cardSpacing; //postion of each card
-                Vector3 splinePosition = spline.EvaluatePosition(position); //converts it to world postion
-
-                Vector3 cardForwardDir = -spline.EvaluateUpVector(position);
-                Vector3 splineTangentDir = spline.EvaluateTangent(position);
+                var position = firstCardPosition + i++ * cardSpacing; //position of each card
+                
+                splineContainer.Evaluate(position, out var pos, out var tangent, out var up);
+                Vector3 splinePosition   = pos;
+                Vector3 cardForwardDir   = -up;
+                Vector3 splineTangentDir = tangent;
+                
                 var cardUpDir = Vector3.Cross(cardForwardDir, splineTangentDir).normalized;
                 var rotation = Quaternion.LookRotation(cardForwardDir, cardUpDir);
                 card.transform.DOMove(splinePosition, 0.25f);
