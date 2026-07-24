@@ -756,6 +756,10 @@ PrefabInstance:
       propertyPath: action
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: sceneName
+      value: BattleScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

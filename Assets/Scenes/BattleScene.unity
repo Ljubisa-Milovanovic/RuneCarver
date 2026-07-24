@@ -230,10 +230,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036da4f078eac9b49a147d2c16b7464d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandManager
-  MaxHandSize: 10
-  CardPrefab: {fileID: 2269343934410339006, guid: 4719b607a3b36654d8e3c8bcf209aa7b, type: 3}
+  maxHandSize: 4
+  cardPrefab: {fileID: 2269343934410339006, guid: 4719b607a3b36654d8e3c8bcf209aa7b, type: 3}
   splineContainer: {fileID: 716238874}
-  SpawnPoint: {fileID: 977707469}
+  spawnPoint: {fileID: 977707469}
+  cardHolder: {fileID: 1463810498}
 --- !u!1 &481504777
 GameObject:
   m_ObjectHideFlags: 0

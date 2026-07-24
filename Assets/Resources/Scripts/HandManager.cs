@@ -1,59 +1,62 @@
-using DG.Tweening;
-using NUnit.Framework;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Splines;
-using static UnityEditor.PlayerSettings;
 
-public class HandManager : MonoBehaviour
+namespace Resources.Scripts
 {
-    [SerializeField] private int MaxHandSize;
-    [SerializeField] private GameObject CardPrefab;
-    [SerializeField] private SplineContainer splineContainer;
-    [SerializeField] private Transform SpawnPoint;
-    [SerializeField] private GameObject CardHolder;
-
-    private List<GameObject> handCards = new();
-
-    //samo trnt za test
-    private void Update()
+    public class HandManager : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            DrawCard();
-    }
+        [SerializeField] private int maxHandSize;
+        [SerializeField] private GameObject cardPrefab;
+        [SerializeField] private SplineContainer splineContainer;
+        [SerializeField] private Transform spawnPoint;
+        [SerializeField] private GameObject cardHolder;
 
+        private readonly List<GameObject> _handCards = new();
 
-    private void DrawCard()
-    {
-        if (handCards.Count >= MaxHandSize) return;
-        GameObject card = Instantiate(CardPrefab, SpawnPoint.position, SpawnPoint.rotation);
-        card.transform.SetParent(CardHolder.transform,false);//stavi true da vidis sta ce da se desi
-        handCards.Add(card);
-        UpdateCardPosition();
-    }
-
-    private void UpdateCardPosition()
-    {
-        if (handCards.Count == 0)
+        private void Update()
         {
-            Debug.Log("odigrane sve kartice, treba se pozove sledeca funcija za novu turu");
-            return;
+            if (Input.GetKeyDown(KeyCode.Space))
+                DrawCard();
         }
-        float CardSpacing = 1f/MaxHandSize; //splien je float od 0f do 1f
-        float firstCardPostion = 0.5f - (handCards.Count-1) * CardSpacing/2;
-        Spline spline = splineContainer.Spline;
-        for (int i = 0; i < handCards.Count; i++)
-        {
-            float position = firstCardPostion + i * CardSpacing; //postion of each card
-            Vector3 splinePosition = spline.EvaluatePosition(position); //converts it to world postion
 
-            Vector3 cardForwardDir = spline.EvaluateUpVector(position);
-            Vector3 splineTangentDir = spline.EvaluateTangent(position);
-            Vector3 cardUpDir = Vector3.Cross(cardForwardDir, splineTangentDir).normalized;
-            Quaternion rotation = Quaternion.LookRotation(cardForwardDir, cardUpDir);
-            handCards[i].transform.DOMove(splinePosition, 0.25f);
-            handCards[i].transform.DORotateQuaternion(rotation, 0.25f);
+
+        private void DrawCard()
+        {
+            if (_handCards.Count >= maxHandSize) return;
+            GameObject card = Instantiate(cardPrefab, spawnPoint.position, spawnPoint.rotation);
+            card.transform.SetParent(cardHolder.transform, false); //stavi true da vidis sta ce da se desi
+            _handCards.Add(card);
+            UpdateCardPosition();
+        }
+
+        // ReSharper disable Unity.PerformanceAnalysis
+        private void UpdateCardPosition()
+        {
+            if (_handCards.Count == 0)
+            {
+                Debug.Log("odigrane sve kartice, treba se pozove sledeca funcija za novu turu");
+                return;
+            }
+
+            var cardSpacing = 1f / maxHandSize; //splien je float od 0f do 1f
+            var firstCardPosition = 0.5f - (_handCards.Count - 1) * cardSpacing / 2;
+            var spline = splineContainer.Spline;
+            
+            var i = 0;
+            foreach (var card in _handCards)
+            {
+                var position = firstCardPosition + (30*i++) * cardSpacing; //postion of each card
+                Vector3 splinePosition = spline.EvaluatePosition(position); //converts it to world postion
+
+                Vector3 cardForwardDir = -spline.EvaluateUpVector(position);
+                Vector3 splineTangentDir = spline.EvaluateTangent(position);
+                var cardUpDir = Vector3.Cross(cardForwardDir, splineTangentDir).normalized;
+                var rotation = Quaternion.LookRotation(cardForwardDir, cardUpDir);
+                card.transform.DOMove(splinePosition, 0.25f);
+                card.transform.DORotateQuaternion(rotation, 0.25f);
+            }
         }
     }
 }
