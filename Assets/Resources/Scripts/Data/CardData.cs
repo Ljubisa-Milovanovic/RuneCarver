@@ -1,9 +1,10 @@
 using Assets.Resources.Scripts.Enums;
+using Resources.Scripts.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Resources.Scripts.Enums.Data
+namespace Resources.Scripts.Data
 {
     public enum CardCategory
     {
@@ -11,7 +12,7 @@ namespace Resources.Scripts.Enums.Data
         Skill,
         Power
     }
-
+    [CreateAssetMenu(fileName = "NewCard", menuName = "RuneCarver/Main Card")]
     public class CardData : ScriptableObject
     {
         [Header("Identity")]

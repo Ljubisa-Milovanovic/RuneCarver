@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Resources.Scripts.Enums.Data
+namespace Resources.Scripts.Data
 {
     public enum PassiveEffectType
     {
@@ -14,6 +14,7 @@ namespace Resources.Scripts.Enums.Data
         ThornsOnBlock,
     }
 
+    [CreateAssetMenu(fileName = "NewRune", menuName = "RuneCarver/Rune Card")]
     public class RuneData : ScriptableObject
     {
         [Header("Identity")]
