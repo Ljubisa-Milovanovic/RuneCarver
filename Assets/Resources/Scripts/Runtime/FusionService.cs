@@ -16,7 +16,7 @@ namespace Assets.Resources.Scripts.Runtime
     {
         public readonly FusionResultCode Code;
         public readonly CardInstance ResultInstance;
-        public readonly List<RuneData> DisplacedRunes; // rune koje ne idu na ovu kartu
+        public readonly List<RuneData> DisplacedRunes;
 
         public FusionResult(FusionResultCode code, CardInstance resultInstance, List<RuneData> dispalcedRunes)
         {
@@ -67,7 +67,7 @@ namespace Assets.Resources.Scripts.Runtime
             displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(a, result));
             displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(b, result));
 
-            return new FusionResult(FusionResultCode.Success, result, displaced);
+            return new FusionResult(FusionResultCode.Success, result, displaced); 
         }
     }
 }
