@@ -1,8 +1,8 @@
-﻿using Resources.Scripts.Enums;
+﻿using Assets.Resources.Scripts.Enums;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Resources.Scripts.Data
+namespace Assets.Resources.Scripts.Data
 {
     public enum PassiveEffectType
     {

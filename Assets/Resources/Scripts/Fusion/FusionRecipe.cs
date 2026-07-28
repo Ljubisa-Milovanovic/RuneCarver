@@ -1,8 +1,8 @@
-using Resources.Scripts.Data;
-using Resources.Scripts.Enums;
+using Assets.Resources.Scripts.Data;
+using Assets.Resources.Scripts.Enums;
 using UnityEngine;
 
-namespace Resources.Scripts.Fusion
+namespace Assets.Resources.Scripts.Fusion
 {
     [CreateAssetMenu(fileName = "NewFusionRecipe", menuName = "RuneCarver/Fusion Recipe")]
     public class FusionRecipe : ScriptableObject
@@ -32,6 +32,11 @@ namespace Resources.Scripts.Fusion
             switch (MatchMode)
             {
                 case FusionMatchMode.ByElementPair:
+                    if (ElementMatrix.IsHybrid(ElementA) || ElementMatrix.IsHybrid(ElementB))
+                        return false;
+                    if (ElementMatrix.IsHybrid(a.ElementType) || ElementMatrix.IsHybrid(b.ElementType))
+                        return false;
+
                     return MatchesElementPair(a.ElementType, b.ElementType);
 
                 case FusionMatchMode.ByExactCards:

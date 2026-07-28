@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Resources.Scripts
+namespace Assets.Resources.Scripts
 {
     public class SettingsCard : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using NUnit.Framework;
-using Resources.Scripts.Data;
-using Resources.Scripts.Enums;
-using Resources.Scripts.Fusion;
+using Assets.Resources.Scripts.Data;
+using Assets.Resources.Scripts.Enums;
+using Assets.Resources.Scripts.Fusion;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,10 +1,9 @@
 using Assets.Resources.Scripts.Enums;
-using Resources.Scripts.Enums;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Resources.Scripts.Data
+namespace Assets.Resources.Scripts.Data
 {
     public enum CardCategory
     {

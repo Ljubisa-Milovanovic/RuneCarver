@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
-namespace Resources.Scripts
+namespace Assets.Resources.Scripts
 {
     public class HandManager : MonoBehaviour
     {

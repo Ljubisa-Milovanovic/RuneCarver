@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Resources.Scripts.Enums
+namespace Assets.Resources.Scripts.Enums
 {
 	public enum ElementType
 	{
