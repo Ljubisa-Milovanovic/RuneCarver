@@ -1,6 +1,9 @@
 using Assets.Resources.Scripts.Data;
 using Assets.Resources.Scripts.Enums;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Assets.Resources.Scripts.Fusion
 {
@@ -8,56 +11,60 @@ namespace Assets.Resources.Scripts.Fusion
     public class FusionRecipe : ScriptableObject
     {
         [Header("Match Rule")]
-        public FusionMatchMode MatchMode = FusionMatchMode.ByElementPair;
-
-        [Tooltip("Used when MatchMode = ByElementPair. Order doesn't matter — Fire+Earth matches Earth+Fire.")]
-        public ElementType ElementA;
-        public ElementType ElementB;
-
-        [Tooltip("Used when MatchMode = ByExactCards.")]
-        public CardData ExactCardA;
-        public CardData ExactCardB;
+        public FusionMatchMode MatchMode = FusionMatchMode.ByCarvingSequence;
+        public List<GlyphType> RequiredSequence = new List<GlyphType>();
+        [FormerlySerializedAs("ExactCardA")] public CardData FirstCard;
+        [FormerlySerializedAs("ExactCardB")] public CardData SecondCard;
 
         [Header("Result")]
-        [Tooltip("Hand-authored CardData produced by this fusion. Should have IsHybrid = true.")]
         public CardData ResultCard;
 
-        [Tooltip("Optional flavor name shown in the fusion confirmation UI, e.g. 'Lava'.")]
+        public bool CollapseCarving;
         public string RecipeDisplayName;
 
-        public bool Matches(CardData a, CardData b)
+        /// Kljuc pod kojim FusionDatabase indeksira ovaj recept u sequence mapi.
+        public string CarvingKey => GlyphSequence.ToKey(RequiredSequence);
+
+        public bool IsValid
         {
-            if (a == null || b == null) return false;
-
-            switch (MatchMode)
+            get
             {
-                case FusionMatchMode.ByElementPair:
-                    if (ElementMatrix.IsHybrid(ElementA) || ElementMatrix.IsHybrid(ElementB))
+                if (ResultCard == null) return false;
+
+                switch (MatchMode)
+                {
+                    case FusionMatchMode.ByCarvingSequence:
+                        return GlyphSequence.IsCarved(RequiredSequence);
+
+                    case FusionMatchMode.ByExactCards:
+                        return FirstCard != null && SecondCard != null;
+
+                    default:
                         return false;
-                    if (ElementMatrix.IsHybrid(a.ElementType) || ElementMatrix.IsHybrid(b.ElementType))
-                        return false;
-
-                    return MatchesElementPair(a.ElementType, b.ElementType);
-
-                case FusionMatchMode.ByExactCards:
-                    return (a == ExactCardA && b == ExactCardB) ||
-                           (a == ExactCardB && b == ExactCardA);
-
-                default:
-                    return false;
+                }
             }
         }
-
-        private bool MatchesElementPair(ElementType a, ElementType b)
+        public bool MatchesCards(CardData first, CardData second)
         {
-            return (a == ElementA && b == ElementB) ||
-                   (a == ElementB && b == ElementA);
+            if (MatchMode != FusionMatchMode.ByExactCards) return false;
+            if (first == null || second == null) return false;
+
+            return first == FirstCard && second == SecondCard;
+        }
+        
+        public bool MatchesCarving(IReadOnlyList<GlyphType> combinedCarving)
+        {
+            if (MatchMode != FusionMatchMode.ByCarvingSequence) return false;
+            if (combinedCarving == null || RequiredSequence == null) return false;
+            if (combinedCarving.Count != RequiredSequence.Count) return false;
+
+            return !RequiredSequence.Where((t, i) => combinedCarving[i] != t).Any();
         }
     }
 
     public enum FusionMatchMode
     {
-        ByElementPair,
+        ByCarvingSequence,
         ByExactCards
     }
 }

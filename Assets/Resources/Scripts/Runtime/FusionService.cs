@@ -1,7 +1,7 @@
 ﻿using Assets.Resources.Scripts.Data;
-using System;
+using Assets.Resources.Scripts.Enums;
 using System.Collections.Generic;
-using System.Text;
+using Resources.Scripts.Fusion.Database;
 
 namespace Assets.Resources.Scripts.Runtime
 {
@@ -14,18 +14,18 @@ namespace Assets.Resources.Scripts.Runtime
     }
     public readonly struct FusionResult
     {
-        public readonly FusionResultCode Code;
+        private readonly FusionResultCode _code;
         public readonly CardInstance ResultInstance;
         public readonly List<RuneData> DisplacedRunes;
 
         public FusionResult(FusionResultCode code, CardInstance resultInstance, List<RuneData> dispalcedRunes)
         {
-            Code = code;
+            _code = code;
             ResultInstance = resultInstance;
             DisplacedRunes = dispalcedRunes;
         }
 
-        public bool Success => Code == FusionResultCode.Success;
+        public bool Success => _code == FusionResultCode.Success;
 
         public static FusionResult Failed(FusionResultCode code) => new FusionResult(code, null, null);
         
@@ -38,36 +38,44 @@ namespace Assets.Resources.Scripts.Runtime
         {
             _db = db;
         }
-
-        public bool CanFuse(CardInstance a, CardInstance b)
+        
+        public bool CanFuse(CardInstance first, CardInstance second)
         {
-            if (a == null || b == null)
+            if (first == null || second == null || ReferenceEquals(first, second))
                 return false;
 
-            return _db != null && _db.CanFuse(a.BaseCardData, b.BaseCardData);
+            return _db != null && _db.CanFuse(
+                first.BaseCardData,
+                second.BaseCardData,
+                GlyphSequence.Combine(first.Carving, second.Carving));
         }
 
-        public FusionResult Fuse(CardInstance a, CardInstance b)
+        public FusionResult Fuse(CardInstance first, CardInstance second)
         {
-            if (a == null || b == null)
+            if (first == null || second == null)
                 return FusionResult.Failed(FusionResultCode.Failed_NullInput);
 
-            if (ReferenceEquals(a, b))
+            if (ReferenceEquals(first, second))
                 return FusionResult.Failed(FusionResultCode.Failed_SameInstance);
 
-            var recipe = _db?.FindRecipe(a.BaseCardData, b.BaseCardData);
+            var combinedCarving = GlyphSequence.Combine(first.Carving, second.Carving);
+            var recipe = _db?.FindRecipe(first.BaseCardData, second.BaseCardData, combinedCarving);
 
             if (recipe == null || recipe.ResultCard == null)
                 return FusionResult.Failed(FusionResultCode.Failed_NoRecipeFound);
 
-            var result = new CardInstance(recipe.ResultCard);
+            IReadOnlyList<GlyphType> resultCarving = recipe.CollapseCarving
+                ? recipe.ResultCard.Carving
+                : combinedCarving;
+
+            var result = new CardInstance(recipe.ResultCard, resultCarving);
 
             var displaced = new List<RuneData>();
 
-            displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(a, result));
-            displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(b, result));
+            displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(first, result));
+            displaced.AddRange(RuneSocketingService.TransferCompatibleRunes(second, result));
 
-            return new FusionResult(FusionResultCode.Success, result, displaced); 
+            return new FusionResult(FusionResultCode.Success, result, displaced);
         }
     }
 }

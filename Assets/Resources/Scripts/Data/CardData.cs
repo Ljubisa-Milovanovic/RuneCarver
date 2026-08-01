@@ -23,7 +23,8 @@ namespace Assets.Resources.Scripts.Data
         [Header("Classification")]
         public CardCategory Category = CardCategory.Attack;
         public ElementType ElementType = ElementType.None;
-        public bool IsHybrid;
+
+        public List<GlyphType> Carving = new List<GlyphType>();
 
         [Header("Base Stats")]
         public int ManaCost;
@@ -36,6 +37,8 @@ namespace Assets.Resources.Scripts.Data
         public TargetType Target = TargetType.SingleEnemy;
 
         public bool IsAttack => Category == CardCategory.Attack;
+
+        public bool IsHybrid => Carving is { Count: > 1 };
     }
 
     public enum TargetType

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditor.Overlays;
 
 namespace Assets.Resources.Scripts.Runtime
 {
@@ -19,39 +18,42 @@ namespace Assets.Resources.Scripts.Runtime
     {
         public readonly string InstanceID;
         public CardData BaseCardData { get; private set; }
+
         public List<RuneData> SocketedRunes { get; } = new List<RuneData>();
 
         public List<StatusEffect> ActiveStatuses { get; } = new List<StatusEffect>();
 
-        public CardInstance(CardData card)
+        public IReadOnlyList<GlyphType> Carving { get; }
+
+        public CardInstance(CardData card) : this(card, null) { }
+
+        public CardInstance(CardData card, IReadOnlyList<GlyphType> carvingOverride)
         {
             BaseCardData = card ?? throw new ArgumentNullException(nameof(card));
             InstanceID = Guid.NewGuid().ToString();
+
+            var source = carvingOverride ?? (IReadOnlyList<GlyphType>)card.Carving;
+            Carving = source != null ? new List<GlyphType>(source) : new List<GlyphType>();
         }
 
-        public int MaxRuneSlots => BaseCardData.MaxRuneSlots;
-        public int UsedRuneSlots => SocketedRunes.Count;
+        private int MaxRuneSlots => BaseCardData.MaxRuneSlots;
+        private int UsedRuneSlots => SocketedRunes.Count;
         public bool HasFreeRuneSlot => UsedRuneSlots < MaxRuneSlots;
 
-        public int EffectiveManaCost
+        private int EffectiveManaCost
         {
             get
             {
-                int cost = BaseCardData.ManaCost;
-                foreach (var rune in SocketedRunes)
-                {
-                    cost += rune.StatBuffs.ManaCostDelta;
-                }
+                var cost = BaseCardData.ManaCost + SocketedRunes.Sum(rune => rune.StatBuffs.ManaCostDelta);
                 return Math.Max(0, cost);
             }
         }
-        //ovo je u int zbog znakova, ako hocete moze i float da bude
-        public int EffectiveDamage
+        private int EffectiveDamage
         {
             get
             {
                 float damage = BaseCardData.BaseDamage;
-                float multiplier = 1f;
+                var multiplier = 1f;
 
                 foreach(var rune in SocketedRunes)
                 {
@@ -62,13 +64,11 @@ namespace Assets.Resources.Scripts.Runtime
             }
         }
 
-        public int EffectiveBlock
+        private int EffectiveBlock
         {
             get
             {
-                int block = BaseCardData.BaseBlock;
-                foreach (var rune in SocketedRunes)
-                    block += rune.StatBuffs.BonusBlock;
+                var block = BaseCardData.BaseBlock + SocketedRunes.Sum(rune => rune.StatBuffs.BonusBlock);
                 return Math.Max(0, block);
             }
         }
@@ -83,7 +83,7 @@ namespace Assets.Resources.Scripts.Runtime
 
         public override string ToString()
         {
-            string runeSuffix = SocketedRunes.Count > 0
+            var runeSuffix = SocketedRunes.Count > 0
                 ? $" [{string.Join(", ", SocketedRunes.Select(r => r.DisplayName))}]"
                 : string.Empty;
             return $"{BaseCardData.DisplayName}{runeSuffix} (Dmg:{EffectiveDamage} Blk:{EffectiveBlock} Cost:{EffectiveManaCost})";
