@@ -3,6 +3,7 @@ using DG.Tweening;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using QFSW.QC;
 
 namespace Resources.Scripts
 {
@@ -16,14 +17,7 @@ namespace Resources.Scripts
 
         private readonly List<GameObject> _handCards = new();
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-                DebugReset();
-            if (Input.GetKeyDown(KeyCode.Space))
-                DrawCard();
-        }
-
+        [Command]
         private void DebugReset()
         {
             foreach (var card in _handCards)
@@ -31,6 +25,7 @@ namespace Resources.Scripts
             _handCards.Clear();
         }
 
+        [Command]
         private void DrawCard()
         {
             if (_handCards.Count >= maxHandSize) return;
