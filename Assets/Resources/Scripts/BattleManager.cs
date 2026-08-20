@@ -37,4 +37,9 @@ public class BattleManager : MonoBehaviour
         return CurrentHP;
     }
 
+    [Command]
+    private void ShowCurrentHP()
+    {
+        Debug.Log(CurrentHP.ToString());
+    }
 }

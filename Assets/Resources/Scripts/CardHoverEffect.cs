@@ -26,6 +26,7 @@ namespace Resources.Scripts
             transform.SetAsLastSibling();
 
             ScaleTo(_baseScale * hoverScale);
+            Debug.Log("uso sam");
         }
 
         private void OnMouseExit()
