@@ -1,4 +1,4 @@
-
+﻿
 using DG.Tweening;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,31 +17,37 @@ public class SettingsCardsSpline : MonoBehaviour
 
     private void Awake()
     {
-        
         var i = 0;
         foreach (var card in settingsCards)
         {
-            var position = firstCardPosition + i++ * cardSpacing; //position of each card //0.125 ; 0.375 ; 0.5 ; 0.75
+            var positionOnSpline = firstCardPosition + i * cardSpacing;
+            splineContainer.Evaluate(positionOnSpline, out var pos, out var tangent, out var up);
 
-            splineContainer.Evaluate(position, out var pos, out var tangent, out var up);
-            Vector3 splinePosition = pos;
+            Vector3 finalPosition = pos;
             Vector3 cardForwardDir = -up;
             Vector3 splineTangentDir = tangent;
-
             var cardUpDir = Vector3.Cross(cardForwardDir, splineTangentDir).normalized;
-            var rotation = Quaternion.LookRotation(cardForwardDir, cardUpDir);
-            //Debug.Log("proso");
-            card.transform.DOMove(splinePosition, 0.25f);
-            card.transform.DORotateQuaternion(rotation, 0.25f);
+            Quaternion finalRotation = Quaternion.LookRotation(cardForwardDir, cardUpDir);
 
+            if (i == 1 || i == 2)
+            {
+                finalPosition.y = -63f; // Postavljam finalni cilj na 200, nzm kako radi
+
+                // Rotacija na Z osi (Euler uglovi)
+                Vector3 euler = finalRotation.eulerAngles;
+                if (i == 1) euler.z = 6.5f;   
+                if (i == 2) euler.z = -6.5f;  
+                finalRotation = Quaternion.Euler(euler);
+            }
+
+            card.transform.DOMove(finalPosition, 0.25f);
+            card.transform.DORotateQuaternion(finalRotation, 0.25f);
+
+            i++;
+            Debug.Log("pozicija" + finalPosition.ToString());
         }
-        Debug.Log("awake");
     }
 
-    private void Start()
-    {
-        // mislim da bi 2. i 3, kartica trebalo da imaju pos y 200 i rotaciju Z oko 6,7 (tjst -6,-7 za 3. karticu); ali nmg sad to da namestim jer me nesto jebe a nemam net da pogledam
-        //mogao bi to da namestim zasebno na svakoj kartici ili to nije resenje
-    }
+
 
 }
