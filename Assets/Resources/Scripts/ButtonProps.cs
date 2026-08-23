@@ -7,6 +7,8 @@ namespace Resources.Scripts
 {
     public class ButtonProps : MonoBehaviour
     {
+        public GameData gameData;
+
         private enum ButtonAction
         {
             LoadScene,
@@ -49,7 +51,10 @@ namespace Resources.Scripts
             {
                 case ButtonAction.LoadScene:
                     if (!string.IsNullOrEmpty(sceneName))
+                    {
+                        gameData.lastLoadedScene = SceneManager.GetActiveScene().name;
                         SceneManager.LoadScene(sceneName);
+                    }
                     else
                         Debug.LogWarning($"{gameObject.name}: scene isn't set");
                     break;

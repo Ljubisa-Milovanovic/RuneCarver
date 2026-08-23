@@ -1126,7 +1126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 69384b2d2c92b4a4588527d3e6549c68, type: 3}
+  m_Sprite: {fileID: -8385928920400638463, guid: 69384b2d2c92b4a4588527d3e6549c68, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1313,7 +1313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a21d65ea057872548bfcbf2def436192, type: 3}
+  m_Sprite: {fileID: -6157620600087204747, guid: a21d65ea057872548bfcbf2def436192, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1710,7 +1710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76570b08be95f0d45ad56ac23594afb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleManager
-  GameData: {fileID: 11400000, guid: f9bd140978455884ea449e596ec49ec3, type: 2}
 --- !u!4 &1343772092
 Transform:
   m_ObjectHideFlags: 0
@@ -1738,7 +1737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871f4dec8e9f7b548ad7a780399af15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  GameData: {fileID: 11400000, guid: f9bd140978455884ea449e596ec49ec3, type: 2}
 --- !u!1 &1435333514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,7 +2177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845276930943762971, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4845637959249703711, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
       propertyPath: m_AnchorMax.y

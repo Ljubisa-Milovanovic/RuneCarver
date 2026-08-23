@@ -4,9 +4,7 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance { get; private set; }
-
-    private int CurrentHP;
-    private int MaxHP = 11;
+    public GameData GameData;
 
     private void Awake()
     {
@@ -18,28 +16,28 @@ public class BattleManager : MonoBehaviour
         {
             Instance = this;
         }
-        CurrentHP = MaxHP;
+        GameData.currentHP = GameData.MaxHP;
     }
 
     public int loseHPAmount(int amount)
     {
-        CurrentHP -= amount;
-        if (CurrentHP <= 0)
+        GameData.currentHP -= amount;
+        if (GameData.currentHP <= 0)
         {
             Debug.Log("mrtav si");
-            CurrentHP = 0;
+            GameData.currentHP = 0;
         }
-        if (CurrentHP > MaxHP)
+        if (GameData.currentHP > GameData.MaxHP)
         {
             Debug.Log("neko me troluje CurrentHP > MaxHP");
-            CurrentHP = MaxHP;
+            GameData.currentHP = GameData.MaxHP;
         }
-        return CurrentHP;
+        return GameData.currentHP;
     }
 
     [Command]
     private void ShowCurrentHP()
     {
-        Debug.Log(CurrentHP.ToString());
+        Debug.Log(GameData.currentHP.ToString());
     }
 }
