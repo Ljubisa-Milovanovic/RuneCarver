@@ -757,6 +757,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: f9bd140978455884ea449e596ec49ec3, type: 2}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
       propertyPath: sceneName
       value: BattleScene
       objectReference: {fileID: 0}
@@ -988,6 +992,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeckButton
       objectReference: {fileID: 0}
+    - target: {fileID: 7590799141897301707, guid: 95dfa52242d1bc640bd7f033a5193e68, type: 3}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 11400000, guid: f9bd140978455884ea449e596ec49ec3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

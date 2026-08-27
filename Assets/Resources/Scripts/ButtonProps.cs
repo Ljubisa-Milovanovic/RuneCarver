@@ -60,6 +60,9 @@ namespace Resources.Scripts
                     break;
 
                 case ButtonAction.Exit:
+                    PlayerPrefs.SetInt("currentHP", gameData.currentHP);
+                    PlayerPrefs.SetString("currentStage", gameData.currentStage);
+                    PlayerPrefs.SetInt("currentMana", gameData.currentMana);
                     Application.Quit();
                     Debug.Log("Quit");
                     break;

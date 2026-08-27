@@ -44,7 +44,9 @@ public class SettingsCardsSpline : MonoBehaviour
             card.transform.DORotateQuaternion(finalRotation, 0.25f);
 
             i++;
-            Debug.Log("pozicija" + finalPosition.ToString());
+
+            //Debug.Log("pozicija" + finalPosition.ToString());
+
         }
     }
 
