@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cc82c870df21f646b0bc700e3cf7ff7, type: 3}
+  m_Name: Fireball
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Scripts.Data.CardData
+  CardID: 1
+  DisplayName: Fireball
+  Description: Throw a fireball at your enemy
+  Artwork: {fileID: 0}
+  Category: 0
+  ElementType: 1
+  IsHybrid: 0
+  ManaCost: 0
+  BaseDamage: 5
+  BaseBlock: 0
+  MaxRuneSlots: 1
+  AppliedStatusEffects: []
+  Target: 0

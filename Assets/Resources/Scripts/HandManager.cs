@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Splines;
 using QFSW.QC;
 
-namespace Resources.Scripts
+namespace Assets.Resources.Scripts
 {
     public class HandManager : MonoBehaviour
     {

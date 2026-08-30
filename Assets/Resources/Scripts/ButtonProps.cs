@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Resources.Scripts
+namespace Assets.Resources.Scripts
 {
     public class ButtonProps : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Resources.Scripts
+namespace Assets.Resources.Scripts
 {
     public class SettingsMenu : MonoBehaviour
     {
