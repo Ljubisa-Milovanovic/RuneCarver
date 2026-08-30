@@ -10,7 +10,8 @@ namespace Assets.Resources.Scripts
         private void Awake()
         {
             var menu = transform.GetComponentInParent<SettingsMenu>();
-            transform.GetComponent<Button>().onClick.AddListener(() => menu.ShowPanel(panel));
+            transform.GetComponent<Button>().onClick.AddListener(
+                () => menu.ShowPanel(panel));
         }
     }
 }

@@ -7,6 +7,8 @@ namespace Assets.Resources.Scripts
 {
     public class ButtonProps : MonoBehaviour
     {
+        public GameData gameData;
+
         private enum ButtonAction
         {
             LoadScene,
@@ -49,12 +51,18 @@ namespace Assets.Resources.Scripts
             {
                 case ButtonAction.LoadScene:
                     if (!string.IsNullOrEmpty(sceneName))
+                    {
+                        gameData.lastLoadedScene = SceneManager.GetActiveScene().name;
                         SceneManager.LoadScene(sceneName);
+                    }
                     else
                         Debug.LogWarning($"{gameObject.name}: scene isn't set");
                     break;
 
                 case ButtonAction.Exit:
+                    PlayerPrefs.SetInt("currentHP", gameData.currentHP);
+                    PlayerPrefs.SetString("currentStage", gameData.currentStage);
+                    PlayerPrefs.SetInt("currentMana", gameData.currentMana);
                     Application.Quit();
                     Debug.Log("Quit");
                     break;

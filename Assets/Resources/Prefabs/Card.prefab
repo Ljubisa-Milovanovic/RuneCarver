@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 1354277538482037718}
   - component: {fileID: 1527552169237153344}
   - component: {fileID: 1710455365946593477}
+  - component: {fileID: 867928858112664034}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -245,6 +246,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 200, y: 300}
   m_EdgeRadius: 0
+--- !u!114 &867928858112664034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269343934410339006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a66607346eaebe9ebccb7cf3d4a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Scripts.CardHoverEffect
+  hoverScale: 1.2
+  tweenDuration: 0.2
+  tweenEase: 6
 --- !u!1 &5490818755511993236
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +326,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text kartice
+  m_text: If u see this text its a bug
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -337,8 +353,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
