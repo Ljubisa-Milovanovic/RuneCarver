@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 195b961def97415429e7ebc80c7c9e7c
+guid: e5998238d46a49c459beb21113dc7d3b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5807002155360998945
-    second: supCard3_0
+      213: 415805988396698561
+    second: RUNE_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
-    mipMapMode: 0
-    enableMipMap: 0
+    mipMapMode: 1
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: supCard3_0
+      name: RUNE_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 300
+        width: 800
+        height: 1200
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd9a7c77e42696fa0800000000000000
-      internalID: -5807002155360998945
+      spriteID: 1cb8dd9e75d35c500800000000000000
+      internalID: 415805988396698561
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      supCard3_0: -5807002155360998945
+      RUNE_0: 415805988396698561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
